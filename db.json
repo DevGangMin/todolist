@@ -3,37 +3,37 @@
     {
       "id": "Kzf7YdF7z_c",
       "title": "할일 1",
-      "completed": true,
+      "completed": false,
       "createdAt": "2026-03-24T07:05:15.876Z"
     },
     {
       "id": "9VEqkhVzx2A",
       "title": "할일 2",
-      "completed": true,
+      "completed": false,
       "createdAt": "2026-03-24T07:04:54.228Z"
     },
     {
       "id": "Om27iK-WknE",
       "title": "할일 3",
-      "completed": true,
+      "completed": false,
       "createdAt": "2026-03-24T07:04:58.581Z"
     },
     {
       "id": "l26YPrig0-Y",
       "title": "할일 4",
-      "completed": false,
+      "completed": true,
       "createdAt": "2026-03-24T07:05:01.913Z"
     },
     {
       "id": "2t-Bz1eFWBo",
       "title": "할일 5",
-      "completed": false,
+      "completed": true,
       "createdAt": "2026-03-24T07:05:04.068Z"
     },
     {
       "id": "L82clCUDGGc",
       "title": "할일 6",
-      "completed": false,
+      "completed": true,
       "createdAt": "2026-03-24T07:05:07.434Z"
     }
   ],

@@ -38,7 +38,7 @@ function App() {
     setTodos([...todos, savedTodo]);
   };
 
-  // Update
+  // Update (toggle)
   const toggleTodo = async (id) => {
     const targetTodo = todos.find((todo) => todo.id === id);
 
@@ -52,6 +52,20 @@ function App() {
       todo.id === id ? { ...todo, completed: !todo.completed } : todo,
     );
     setTodos(updateTodos);
+  };
+  // Update (edit)
+  const handleEditTodo = async (id, newTitle) => {
+    await fetch(`${URL}/${id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ title: newTitle }),
+    });
+
+    setTodos(
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, title: newTitle } : todo,
+      ),
+    );
   };
 
   // Delete
@@ -76,6 +90,7 @@ function App() {
         todos={todos.filter((todo) => !todo.completed)}
         onToggle={toggleTodo}
         onDelete={deleteTodo}
+        onEdit={handleEditTodo}
       />
       <br />
       <hr />
@@ -87,6 +102,7 @@ function App() {
         todos={todos.filter((todo) => todo.completed)}
         onToggle={toggleTodo}
         onDelete={deleteTodo}
+        onEdit={handleEditTodo}
       />
     </div>
   );
