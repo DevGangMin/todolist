@@ -71,7 +71,7 @@ TodoList의 CRUD 기능을 구현하되, 컴포넌트를 분리하고 할일 목
 
 ## 힌트
 
-- `todos.filter(todo => !todo.completed)` 로 미완료 항목을 걸러낼 수 있습니다
+- `todos.filter(todo => !todo.completed)` 로 미완료 항목을 걸러낼 수 있습니다 -> Update 로직에 활용
 - props로 함수를 넘길 때: `<TodoItem onDelete={handleDelete} />`
 - 자식에서 호출할 때: `props.onDelete(todo.id)`
 
