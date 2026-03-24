@@ -1,12 +1,8 @@
-// TODO: 할일 목록 (여러 TodoItem)
-// 상태(`todos`)는 `App.jsx`에서 관리합니다
+// 할일 목록 (여러 TodoItem)
+import React from 'react';
+import TodoItem from './TodoItem';
 
-// - 할일 목록: `completed`가 `false`인 항목만 표시
-// - 완료 목록: `completed`가 `true`인 항목만 표시
-// - 각 섹션에 제목(`h2`)이 있어야 합니다 (예: "할일 목록", "완료 목록")
-// - 각 할일에는 제목과 생성 시간이 보여야 합니다
-
-function TodoList({ todos, onToggle }) {
+function TodoList({ todos, onToggle, onDelete }) {
     return (
       <ul>
         {todos.map(todo => (
@@ -14,6 +10,7 @@ function TodoList({ todos, onToggle }) {
             key={todo.id}
             todo={todo}
             onToggle={onToggle}
+            onDelete={onDelete}
             />
         ))}
       </ul>
