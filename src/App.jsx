@@ -4,9 +4,12 @@ import styles from "./App.module.css";
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
 import TodoItem from "./components/TodoItem";
+import SortButtons from "./components/SortButtons";
 
 function App() {
   const [todos, setTodos] = useState([]);
+  const [sortOrder, setSortOrder] = useState("newest");
+
   const URL = "http://localhost:4000/todos";
   // Read
   useEffect(() => {
@@ -78,28 +81,36 @@ function App() {
     setTodos(filterTodos);
   };
 
+  // sort
+  const sortTodos = (todoList) => {
+    return [...todoList].sort((a, b) => {
+      const dateA = new Date(a.createdAt);
+      const dateB = new Date(b.createdAt);
+
+      return sortOrder === "newest" ? dateB - dateA : dateA - dateB;
+    });
+  };
+
   return (
     <div className={styles.container}>
       <h1>Todo List</h1>
       {/* TodoForm */}
       <TodoForm onAddTodo={handleAddTodo} />
+      <SortButtons sortOrder={sortOrder} onSortChange={setSortOrder} />
       <br />
       {/* 할 일 목록 */}
       <h2>할 일 목록</h2>
       <TodoList
-        todos={todos.filter((todo) => !todo.completed)}
+        todos={sortTodos(todos.filter((todo) => !todo.completed))}
         onToggle={toggleTodo}
         onDelete={deleteTodo}
         onEdit={handleEditTodo}
       />
-      <br />
-      <hr />
-      <br />
 
       {/* 완료 목록 */}
       <h2>완료 목록</h2>
       <TodoList
-        todos={todos.filter((todo) => todo.completed)}
+        todos={sortTodos(todos.filter((todo) => !todo.completed))}
         onToggle={toggleTodo}
         onDelete={deleteTodo}
         onEdit={handleEditTodo}

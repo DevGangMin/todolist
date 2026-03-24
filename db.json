@@ -3,19 +3,19 @@
     {
       "id": "Kzf7YdF7z_c",
       "title": "할일 1",
-      "completed": false,
+      "completed": true,
       "createdAt": "2026-03-24T07:05:15.876Z"
     },
     {
       "id": "9VEqkhVzx2A",
       "title": "할일 2",
-      "completed": false,
+      "completed": true,
       "createdAt": "2026-03-24T07:04:54.228Z"
     },
     {
       "id": "Om27iK-WknE",
       "title": "할일 3",
-      "completed": false,
+      "completed": true,
       "createdAt": "2026-03-24T07:04:58.581Z"
     },
     {
@@ -27,14 +27,26 @@
     {
       "id": "2t-Bz1eFWBo",
       "title": "할일 5",
-      "completed": true,
+      "completed": false,
       "createdAt": "2026-03-24T07:05:04.068Z"
     },
     {
       "id": "L82clCUDGGc",
       "title": "할일 6",
-      "completed": true,
+      "completed": false,
       "createdAt": "2026-03-24T07:05:07.434Z"
+    },
+    {
+      "id": "mxiEGge5VMc",
+      "title": "할일 7",
+      "completed": false,
+      "createdAt": "2026-03-24T07:43:32.865Z"
+    },
+    {
+      "id": "qkltWxSXJGU",
+      "title": "할일 8",
+      "completed": false,
+      "createdAt": "2026-03-24T07:43:44.807Z"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
