@@ -6,8 +6,8 @@ const formattedDate = new Date(todo.createdAt).toLocaleString();
 
     return (
     <li>
-      <span>{todo.title}</span>
-      <span>{formattedDate}</span>
+      <span>{todo.completed ? <s>{todo.title}</s> : todo.title}</span>
+      <span>{todo.completed ? <s>{formattedDate}</s> : formattedDate}</span>
       {/* 수정(완료) 버튼 */}
       <button onClick={() => onToggle(todo.id)}>
         {todo.completed ? "취소" : "완료"}

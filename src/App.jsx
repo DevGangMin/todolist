@@ -5,7 +5,6 @@ import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
 import TodoItem from "./components/TodoItem";
 
-
 function App() {
   // State 관리 용 로직
   const [todos, setTodos] = useState([]);
@@ -43,15 +42,20 @@ function App() {
       <h1>Todo List</h1>
       {/* TodoForm */}
       <TodoForm onAddTodo={handleAddTodo} />
-
+      <br />
       {/* 할 일 목록 */}
+      <h2>할 일 목록</h2>
       <TodoList
         todos={todos.filter((todo) => !todo.completed)}
         onToggle={toggleTodo}
         onDelete={deleteTodo}
       />
+      <br />
+      <hr />
+      <br />
 
       {/* 완료 목록 */}
+      <h2>완료 목록</h2>
       <TodoList
         todos={todos.filter((todo) => todo.completed)}
         onToggle={toggleTodo}
