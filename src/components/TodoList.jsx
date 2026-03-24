@@ -5,3 +5,19 @@
 // - 완료 목록: `completed`가 `true`인 항목만 표시
 // - 각 섹션에 제목(`h2`)이 있어야 합니다 (예: "할일 목록", "완료 목록")
 // - 각 할일에는 제목과 생성 시간이 보여야 합니다
+
+function TodoList({ todos, onToggle }) {
+    return (
+      <ul>
+        {todos.map(todo => (
+            <TodoItem 
+            key={todo.id}
+            todo={todo}
+            onToggle={onToggle}
+            />
+        ))}
+      </ul>
+    );
+}
+
+export default TodoList;

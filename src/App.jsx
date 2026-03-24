@@ -28,7 +28,15 @@ function App() {
   // "완료" 버튼을 누르면 해당 항목이 완료 목록으로 이동합니다
   // 완료 목록의 항목에는 "취소" 버튼이 있어야 합니다
   // "취소" 버튼을 누르면 해당 항목이 다시 할일 목록으로 이동합니다
-
+  const toggleTodo = (id) => {
+    const updateTodos = todos.map((todo) => {
+      if (todo.id === id) {
+        return { ...todo, completed: !todo.completed };
+      }
+      return todo;
+    });
+    setTodos(updateTodos);
+  };
 
   // TODO: Delete (todos.filter 사용 - 해당 id를 제외한 새 배열을 set)
   // 각 할일에 "삭제" 버튼이 있어야 합니다
@@ -45,14 +53,20 @@ function App() {
       - 생성 시간
       - todos.filter를 써서 completed가 false 인 것만 추출하여 TodoList 컴포넌트로 전달
       - props로 '완료/취소 함수' 와 '삭제 함수' 전달 */}
-
+      <TodoList
+        todos={todos.filter((todo) => !todo.completed)}
+        onToggle={toggleTodo}
+      />
 
       {/* TODO: 완료 목록 */}
       {/* - 제목 : <h2>완료 목록</h2>
       - 생성 시간
       - todos.filter를 써서 completed가 true 인 것만 추출하여 TodoList 컴포넌트로 전달
       - props로 '완료/취소 함수' 와 '삭제 함수' 전달 */}
-
+      <TodoList
+        todos={todos.filter((todo) => todo.completed)}
+        onToggle={toggleTodo}
+      />
     </div>
   );
 }
