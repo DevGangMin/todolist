@@ -1,38 +1,64 @@
 import "./App.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./App.module.css";
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
 import TodoItem from "./components/TodoItem";
 
 function App() {
-  // State 관리 용 로직
   const [todos, setTodos] = useState([]);
+  const URL = "http://localhost:4000/todos";
+  // Read
+  useEffect(() => {
+    const fetchTodos = async () => {
+      const response = await fetch("http://localhost:4000/todos");
+      const data = await response.json();
+      setTodos(data);
+    };
+
+    fetchTodos();
+  }, []);
 
   // Create
-  const handleAddTodo = (title) => {
+  const handleAddTodo = async (title) => {
     const newTodo = {
-      id: Date.now(),
       title: title,
       completed: false,
-      createdAt: new Date(),
+      createdAt: new Date().toISOString("KO-KR"),
     };
-    setTodos([...todos, newTodo]);
+
+    const response = await fetch("http://localhost:4000/todos", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newTodo),
+    });
+
+    const savedTodo = await response.json();
+    setTodos([...todos, savedTodo]);
   };
 
   // Update
-  const toggleTodo = (id) => {
-    const updateTodos = todos.map((todo) => {
-      if (todo.id === id) {
-        return { ...todo, completed: !todo.completed };
-      }
-      return todo;
+  const toggleTodo = async (id) => {
+    const targetTodo = todos.find((todo) => todo.id === id);
+
+    await fetch(`${URL}/${id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ completed: !targetTodo.completed }),
     });
+
+    const updateTodos = todos.map((todo) =>
+      todo.id === id ? { ...todo, completed: !todo.completed } : todo,
+    );
     setTodos(updateTodos);
   };
 
   // Delete
-  const deleteTodo = (id) => {
+  const deleteTodo = async (id) => {
+    await fetch(`${URL}/${id}`, {
+      method: "DELETE",
+    });
+
     const filterTodos = todos.filter((todo) => todo.id !== id);
     setTodos(filterTodos);
   };

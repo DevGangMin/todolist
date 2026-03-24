@@ -2,16 +2,19 @@ import React, { useState } from "react";
 
 function TodoForm({ onAddTodo }) {
   const [text, setText] = useState("");
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    
     if (text.trim() === "") {
       alert("할 일을 입력해주세요!");
       return;
     }
-    onAddTodo(text);
 
+    onAddTodo(text);
     setText("");
   };
+
   return (
     <form onSubmit={handleSubmit}>
       <input
