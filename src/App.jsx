@@ -22,6 +22,7 @@ function App() {
   // Create
   const handleAddTodo = async (title) => {
     const newTodo = {
+      id: crypto.randomUUID(),
       title: title,
       completed: false,
       createdAt: new Date().toISOString("KO-KR"),
